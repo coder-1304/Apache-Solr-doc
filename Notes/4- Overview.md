@@ -69,9 +69,18 @@ Follow up process:
 - Then you have to enter name of your collection. Enter a name for your collection and press enter
 - Then it will ask how many shards you want to create. Go with default [2] and press enter
 - Then it will ask how many replicas you want to create. Again go with default.
-- Then for configuration go with default and press enter
+- Then for configuration":
+  
+    **Choosing a Configset for Your Solr Collection**
+    When setting up a Solr collection, you'll need to decide on the appropriate configset to use. Solr provides two main options:
 
-This will start you Solr in SolrCloud Mode. Go to - http://localhost:8983/solr to open admin page.
+    **Default Configset**: The `_default` configset is a minimalist starting point, offering essential configuration files to begin your Solr collection. It's suitable for users who prefer to       build their configurations from scratch or have specific customization needs beyond the provided templates.
+
+    **Specialized Configsets**: Solr also offers specialized configsets tailored to specific scenarios or sample datasets. For example, the `sample_techproducts_configs` configset is optimized for use with the "techproducts" dataset, providing preconfigured settings and schema definitions aligned with this dataset's requirements.
+  
+     Go with default and press enter
+
+This will start your Solr in SolrCloud Mode. Go to - http://localhost:8983/solr to open admin page.
 
 ### Creating a new collection and indexing data
 
@@ -237,9 +246,6 @@ Suppose you have an e-commerce website with product documents containing "title"
 Now, when a document is indexed, the content of both the "title" and "description" fields will be automatically copied to the "content" field. This allows users to search for products using keywords from either the title or description, simplifying the search process.
 
 ### Creating a "Catchall" Copy Field
-
-Before we begin indexing, let's make one final adjustment.
-
 Previously, when we queried our indexed documents, we didn't have to specify a specific field to search because our configuration was set up to copy all fields into a text field, which served as the default search field when none was specified.
 
 However, in our current configuration, this rule isn't in place. Consequently, we would need to define a field for every query, which is impractical. Instead, we can establish a "catchall field" by creating a copy field that gathers data from all fields and indexes it into a designated field named `_text_`. Let's proceed with that.
@@ -263,3 +269,74 @@ However, in our current configuration, this rule isn't in place. Consequently, w
 }
 ```
 What this action does is duplicate the content of all fields and stores it in the `_text_` field.
+
+## Faceting 
+
+Faceting is a powerful feature in Solr that allows search results to be organized into subsets or categories, with counts provided for each subset. Solr supports several types of faceting, including field facets, range facets, and pivot facets.
+
+### Field Facets
+
+Field facets provide counts for each unique value of a specified field in the result set. By enabling faceting and specifying the field to facet on, users can retrieve facet counts from all documents in the index. To enable field facets, the following parameters are required:
+- `&rows=0` (We set rows=0 to retrieve facet counts without fetching the actual documents, optimizing performance by avoiding unnecessary document retrieval)
+- `&facet=true`
+- `&facet.field={Target Field Name}`
+
+**Example**
+- `&facet.field=order_type`
+  
+This query will result the count of each type of order.
+
+### Range Facets
+
+Range facets are used for numeric or date fields, allowing users to partition facet counts into ranges rather than discrete values. To enable range facets, users should include parameters such as:
+- `&rows=0`
+- `&facet=true`
+- `&facet.range={Numeric or Date Field}`
+- `&facet.range.start={Start Value}`
+- `&facet.range.end={End Value}`
+- `&facet.range.gap={Gap between Ranges}`
+  
+**Example**
+- `&facet.range=order_date`
+- `&facet.range.start=2000-01-01`
+- `&facet.range.end={2024-02-22 || NOW (means till now)}`
+- `&facet.range.gap=%2B1YEAR`
+
+This query will result in range facet counts for the "order_date" field, starting from January 1, 2000, ending at the current date, and grouped by year. That means the query will count the total number of orders for each year
+
+
+### Pivot Facets
+
+Pivot facets, also known as decision trees, enable nesting two or more fields to explore various combinations. With pivot faceting, users can analyze how different fields intersect within the result set. To enable pivot facets, you should include parameters such as:
+- `&rows=0`
+- `&facet=true`
+- `&facet.pivot={Field1,Field2,...}`
+- `&facet.pivot.mincount={Minimum Count}`
+- `&facet.pivot.limit={Maximum Number of Pivot Facets}`
+  
+**Example**
+- `&facet.pivot=userId,productId`
+- `&facet.pivot.mincount=2`
+- `&facet.pivot.limit=10`
+  
+It will result in combinations of users and products where each combination has occurred at least twice, limited to the top 10 combinations. This query will give information about the number of times each user has purchased each product.
+
+Faceting in Solr offers valuable insights into the composition and distribution of data within search results, empowering users to explore and analyze their datasets effectively.
+
+## Updating data:
+
+- Solr does not duplicate data while uploading multiple times
+- Because the example solr schema specifies a unique key field called id in a file named either managed-schema or schema.xml
+- Whenever you POST commands to solr to add a document with the same value for the unique key as an existing document, it automatically replaces it for you
+  
+## Deleting data:
+
+```bash
+bin/post -c localDocs -d "<delete><id>SP2514N</id></delete>"
+```
+This will delete the document with id=SP2514N
+
+**To delete all documents**
+```bash
+  bin/post -c localDocs -d "<delete><query>*:*</query></delete>"
+```
