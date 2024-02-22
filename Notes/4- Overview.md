@@ -115,3 +115,51 @@ Also you can require or allow a phrase using `+` prefix in a term and `-` prefix
 
 (We'll cover this in detail in exercises)
 
+## Delete a collection
+To delete a collection use this command
+```bash
+bin/solr delete -c <Collection Name>
+```
+
+## Alternative to create a collection
+You can directly create a collection using this command
+```bash
+bin/solr create -c <collection name> -s 2 -rf 2
+```
+- `-s 2` : Means we want to create 2 shards
+- `-rf 2`: Specifies replication, 2 in this case
+
+In this command we didn't mention anything about a configset. That's okay though because Solr knows how to handle this. It automatically uses a default configuration set called "_default" when you don't specify one explicitly. This "_default" configset is well-suited for most general use cases, hence its name. So even though we didn't mention it, Solr knows what to do behind the scenes.
+
+
+## Closing Solr instance
+
+This command stops all running Solr nodes on the local machine:
+```bash
+bin/solr stop -all
+```
+
+Alternatively, you can specify a specific node to stop by providing its port number:
+```bash
+bin/solr stop -p <port_number>
+```
+Replace <port_number> with the port number of the Solr instance you want to stop.
+
+## Restart Solr
+if you've stopped you need to restart it, follow these steps:
+
+1. Start the first node using the following command:
+    ```bash
+    ./bin/solr start -c -p 8983 -s example/cloud/node1/solr
+    ```
+    This command initiates the first node.
+
+2. Once the first node is up and running, proceed to start the second node and specify its connection to ZooKeeper:
+    ```bash
+    ./bin/solr start -c -p 7574 -s example/cloud/node2/solr -z localhost:9983
+
+## Solr Schema
+In Solr, the schema serves as a crucial blueprint stored in a single XML file, outlining the structure and characteristics of fields and field types that Solr recognizes and manages. Essentially, it's a roadmap for Solr to understand and process data. The schema not only defines the names of fields and field types but also includes instructions on how to preprocess data before indexing it. For instance, if you want variations like "abc" and "ABC" to match when searching, you can specify in the schema to normalize such terms, perhaps by converting them to lowercase during indexing and querying. Additionally, the schema allows for the creation of copy fields, which aggregate data from other fields, and dynamic fields, which are generated based on wildcard patterns.
+
+
+
