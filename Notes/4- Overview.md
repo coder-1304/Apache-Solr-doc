@@ -66,10 +66,52 @@ Follow up process:
 
 - This will ask *how many Solr nodes would you like to run in your local cluster?*. Press enter to run 2 nodes which is default (Default option is shown in []).
 - Now you have to enter ports for both nodes. Press enter to use default port.
-- Then you have to enter name of your collection. Enter a name and press enter
+- Then you have to enter name of your collection. Enter a name for your collection and press enter
 - Then it will ask how many shards you want to create. Go with default [2] and press enter
 - Then it will ask how many replicas you want to create. Again go with default.
 - Then for configuration go with default and press enter
 
-This will start you Solr in SolrCloud Mode. Go to - http://localhost:4000/solr to open admin page
+This will start you Solr in SolrCloud Mode. Go to - http://localhost:8983/solr to open admin page.
+
+### Creating a new collection and indexing data
+
+After creating a collection you have to index some data into it. 
+
+Note - This doc contains basic information of indexing and searching. The next doc that contain actual exercise for hands on.
+
+You can index sample data using the `bin/post` tool provided by Solr:
+```bash
+bin/post -c <Your Collection Name> <Path To Document(s)>
+```
+- Your Collection Name: Enter the collection name that you have created previously.
+- Path To Document(s) : Give the location of the documents in the directory. use `/*` to include all the files in a directory.
+
+This command will index various types of documents (JSON, XML, CSV etc.) included in the your directory.
+
+# Solr Basic Searching
+
+Solr can be queried through various methods including REST clients, curl, Chrome POSTMAN, etc., or through native clients available for many programming languages. The Solr Admin UI provides a query builder interface via the Query tab for collections. Go to admin UI and in the sidebar you will see a Collection Selector. Click on your collection here. This will list down the options. Click on the Query option. It will show the panel where you can query the data that you have indexed.
+
+You can also go directly via this link- http://localhost:8983/solr/#/mycollection/query (replace mycollection with the name of collection that you have created)
+![image](https://github.com/coder-1304/Apache-Solr-doc/assets/121802518/890aa573-da9d-4ddd-9205-bae75c4df441)
+
+Click on the `Execute query` without selecting any option. This will list down all of the data that you have indexed. But in the response you will see only 10 results because by default maximum 10 rows are returned via this query. To return `n` number of rows add this parameter to the end of the url `&rows=n` to retrieve maximum `n` number of rows
+
+## Performing Searches
+### Query Parameters
+- **q**: Represents the query parameter used to specify search terms.
+- **rows**: Determines the number of rows (documents) to be returned in the search results.
+
+### Combining Searches
+You can search for multiple terms or phrases in a single query via `q="term1 term2 term3"`
+Also you can require or allow a phrase using `+` prefix in a term and `-` prefix to disallow a term
+
+### Example Queries
+- Searching for all documents: `q=*:*`
+- Searching for a single term: `q=foundation`
+- Searching for documents within a specific field: `q=cat:electronics`
+- Searching for a multi-term phrase: `q="CAS latency"`
+- Searching for documents containing *electronics* phrase and disallow *music* phrase`q="+electronics -music"`
+
+(We'll cover this in detail in exercises)
 
