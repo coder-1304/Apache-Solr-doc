@@ -11,8 +11,15 @@ To install Apache Solr, you just need to download and extract the package. The o
 
 **After extracting the file test it -**
 - Go to the directory where you extracted it
-- Run this command to start a solr server- `./bin/solr start`
+- Run this command to start a solr server-
+```bash
+bin/solr start
+```
 - This will start a solr server at port 8983
-- You will see log like 
-    Started Solr server on port 3111 (pid=56856). Happy searching!
+- You will see log like -
+    `Started Solr server on port 8983 (pid=56856). Happy searching!`
+- Now close the server using-
+```bash
+bin/solr stop -all
+```
 
