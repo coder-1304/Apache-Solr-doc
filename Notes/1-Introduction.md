@@ -1,5 +1,5 @@
 # Apache Solr
-- Apache SOlr is a scalable, ready to deploy, search/storage engine optimized to search laerge volumes of text-centric data
+- Apache SOlr is a scalable, ready to deploy, search/storage engine optimized to search large volumes of text-centric data
 - It is open source, used to build search applications
 
 ## Features
