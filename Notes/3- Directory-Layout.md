@@ -37,10 +37,6 @@ Contains all licenses for 3rd party libraries used by Solr.
 ## `server/`
 
 
-Replace $SOLR_INSTALL with the location where you have extracted the Solr installation bundle.
-
-## Directory Layout
-
 The /server directory is organized as follows:
 
 - **contexts**: Contains the Jetty Web application deployment descriptor for the Solr Web app.
@@ -52,11 +48,14 @@ The /server directory is organized as follows:
 - **solr**: Default solr.solr.home directory where Solr creates core directories. Must contain solr.xml. The core directory in Apache Solr contains metadata and configuration files related to the indexed documents. 
 - **solr/configsets**: Contains different configuration options for running Solr, including default and sample configurations.
 
-## Solr Examples
+## `examples`
 
-Solr provides various example configurations to help you get started quickly:
+Solr provides several example documents and configurations to assist users in getting started quickly. These examples cover various scenarios and data formats:
 
-- **_default**: Minimal configurations with field-guessing and managed schema turned on, allowing you to start indexing data without designing a schema upfront.
-- **sample_techproducts_configs**: Comprehensive example configuration demonstrating many powerful features of Solr, suitable for building a search solution for tech products.
+- **exampledocs**: Contains simple CSV, XML, and JSON files for basic Solr interaction, particularly useful with the bin/post tool.
 
-This documentation provides an overview of the directories and files in the Solr directory. Each component plays a vital role in configuring and running Solr effectively.
+- **example-DIH**: Offers example configurations for the DataImport Handler (DIH), enabling the import of structured content from databases, email servers, or Atom feeds.
+
+- **files**: Provides a basic search UI for locally stored documents like Word or PDF files.
+
+- **films**: Includes a comprehensive dataset about movies in CSV, XML, and JSON formats, facilitating experimentation with Solr's capabilities.
