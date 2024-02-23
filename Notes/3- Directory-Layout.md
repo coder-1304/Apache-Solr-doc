@@ -48,7 +48,7 @@ The /server directory is organized as follows:
 - **solr**: Default solr.solr.home directory where Solr creates core directories. Must contain solr.xml. The core directory in Apache Solr contains metadata and configuration files related to the indexed documents. 
 - **solr/configsets**: Contains different configuration options for running Solr, including default and sample configurations.
 
-## `examples`
+## `examples/`
 
 Solr provides several example documents and configurations to assist users in getting started quickly. These examples cover various scenarios and data formats:
 
