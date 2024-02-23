@@ -1,41 +1,8 @@
-# Understanding Solr Indexing
-
-Solr utilizes an index to efficiently retrieve information from stored documents. This index performs mapping words, terms, or phrases to their respective locations within the documents stored in Solr.
-
-## How Solr Indexing Works
-
-Solr indexing is the process of adding documents to the Solr search index so that they can be searched and retrieved later. When a document is indexed, Solr analyzes its contents and creates an index that maps each word or term to the documents that contain it. This index is then used to quickly find documents that match a given query.
-
-For example, if you're searching for the term "laptop" Solr looks up this term in its index to quickly find the relevant documents without having to re-read the entire text of each document.
-
-When a document containing 100 words is indexed in Solr, each of the 100 words is indexed separately. This means that there will be 100 separate indexes, each mapping a word to the documents that contain it. This indexing approach allows for precise and efficient search functionality, enabling Solr to quickly retrieve documents based on the terms they contain.
-
-## Indexing Steps
-
-The indexing process typically involves the following steps:
-
-1. **Document Parsing:** Solr reads the documents to be indexed and extracts their contents, which may include text, metadata, and other data.
-
-2. **Analysis:** Solr analyzes the contents of the documents to identify individual terms and phrases, and applies various text processing techniques to normalize and enhance them.
-
-3. **Indexing:** Solr creates an index that maps each term to the documents that contain it, along with information about the term's frequency, position, and other properties.
-
-4. **Committing:** Once the indexing process is complete, Solr commits the changes to the index, making them available for search.
-
-
-## Fields in Solr Index
-
-Solr uses the concept of fields to organize and index documents. A field represents a specific type of information within a document, such as title, author, or content. Each field in Solr's index contains the indexed information along with additional metadata to facilitate efficient searching and retrieval.
-
-For instance, if you have a document with fields like "title," "author," and "content," Solr will index each field separately, allowing for targeted searches within specific fields.
-
-In summary, Solr's indexing mechanism optimizes search performance by creating a structured index of words, terms, or phrases, enabling quick and efficient retrieval of relevant documents based on user queries.
-
-## Solr Cloud
+# Solr Cloud
 
 SolrCloud is a distributed search platform built on top of Apache Solr, designed to provide scalability, fault tolerance, and centralized configuration management. It enables you to deploy Solr across a cluster of machines, distributing indexes and queries for high availability and performance. 
 
-**Key components include** 
+### **Key components include** 
 
 - **Cores** : Cores are fundamental units in Solr, representing individual indexes. Each core handles indexing and searching operations for a specific set of data. It contains configuration files, index data, and other resources necessary for search functionality. A core in Solr represents a separate index with its own configuration and schema.
 
@@ -69,7 +36,7 @@ Follow up process:
 - Then you have to enter name of your collection. Enter a name for your collection and press enter
 - Then it will ask how many shards you want to create. Go with default [2] and press enter
 - Then it will ask how many replicas you want to create. Again go with default.
-- Then for configuration":
+- Then you have to choose configuration:
   
     **Choosing a Configset for Your Solr Collection**
     When setting up a Solr collection, you'll need to decide on the appropriate configset to use. Solr provides two main options:
@@ -81,6 +48,39 @@ Follow up process:
      Go with default and press enter
 
 This will start your Solr in SolrCloud Mode. Go to - http://localhost:8983/solr to open admin page.
+
+# Understanding Solr Indexing
+
+Solr utilizes an index to efficiently retrieve information from stored documents. This index performs mapping words, terms, or phrases to their respective locations within the documents stored in Solr.
+
+## How Solr Indexing Works?
+
+Solr indexing is the process of adding documents to the Solr search index so that they can be searched and retrieved later. When a document is indexed, Solr analyzes its contents and creates an index that maps each word or term to the documents that contain it. This index is then used to quickly find documents that match a given query.
+
+For example, if you're searching for the term "laptop" Solr looks up this term in its index to quickly find the relevant documents without having to re-read the entire text of each document.
+
+When a document containing 100 words is indexed in Solr, each of the 100 words is indexed separately. This means that there will be 100 separate indexes, each mapping a word to the documents that contain it. This indexing approach allows for precise and efficient search functionality, enabling Solr to quickly retrieve documents based on the terms they contain.
+
+## Indexing Steps
+
+The indexing process typically involves the following steps:
+
+1. **Document Parsing:** Solr reads the documents to be indexed and extracts their contents, which may include text, metadata, and other data.
+
+2. **Analysis:** Solr analyzes the contents of the documents to identify individual terms and phrases, and applies various text processing techniques to normalize and enhance them.
+
+3. **Indexing:** Solr creates an index that maps each term to the documents that contain it, along with information about the term's frequency, position, and other properties.
+
+4. **Committing:** Once the indexing process is complete, Solr commits the changes to the index, making them available for search.
+
+
+## Fields in Solr Index
+
+Solr uses the concept of fields to organize and index documents. A field represents a specific type of information within a document, such as title, author, or content. Each field in Solr's index contains the indexed information along with additional metadata to facilitate efficient searching and retrieval.
+
+For instance, if you have a document with fields like "title," "author," and "content," Solr will index each field separately, allowing for targeted searches within specific fields.
+
+In summary, Solr's indexing mechanism optimizes search performance by creating a structured index of words, terms, or phrases, enabling quick and efficient retrieval of relevant documents based on user queries.
 
 ### Creating a new collection and indexing data
 
@@ -124,24 +124,86 @@ Also you can require or allow a phrase using `+` prefix in a term and `-` prefix
 
 (We'll cover this in detail in exercises)
 
+## Faceting 
+
+Faceting is a powerful feature in Solr that allows search results to be organized into subsets or categories, with counts provided for each subset. Solr supports several types of faceting, including field facets, range facets, and pivot facets.
+
+### Field Facets
+
+Field facets provide counts for each unique value of a specified field in the result set. By enabling faceting and specifying the field to facet on, users can retrieve facet counts from all documents in the index. To enable field facets, the following parameters are required:
+- `&rows=0` (We set rows=0 to retrieve facet counts without fetching the actual documents, optimizing performance by avoiding unnecessary document retrieval)
+- `&facet=true`
+- `&facet.field={Target Field Name}`
+
+**Example**
+- `&facet.field=order_type`
+  
+This query will result the count of each type of order.
+
+### Range Facets
+
+Range facets are used for numeric or date fields, allowing users to partition facet counts into ranges rather than discrete values. To enable range facets, users should include parameters such as:
+- `&rows=0`
+- `&facet=true`
+- `&facet.range={Numeric or Date Field}`
+- `&facet.range.start={Start Value}`
+- `&facet.range.end={End Value}`
+- `&facet.range.gap={Gap between Ranges}`
+  
+**Example**
+- `&facet.range=order_date`
+- `&facet.range.start=2000-01-01`
+- `&facet.range.end={2024-02-22 || NOW (means till now)}`
+- `&facet.range.gap=%2B1YEAR`
+
+This query will result in range facet counts for the "order_date" field, starting from January 1, 2000, ending at the current date, and grouped by year. That means the query will count the total number of orders for each year
+
+
+### Pivot Facets
+
+Pivot facets, also known as decision trees, enable nesting two or more fields to explore various combinations. With pivot faceting, users can analyze how different fields intersect within the result set. To enable pivot facets, you should include parameters such as:
+- `&rows=0`
+- `&facet=true`
+- `&facet.pivot={Field1,Field2,...}`
+- `&facet.pivot.mincount={Minimum Count}`
+- `&facet.pivot.limit={Maximum Number of Pivot Facets}`
+  
+**Example**
+- `&facet.pivot=userId,productId`
+- `&facet.pivot.mincount=2`
+- `&facet.pivot.limit=10`
+  
+It will result in combinations of users and products where each combination has occurred at least twice, limited to the top 10 combinations. This query will give information about the number of times each user has purchased each product.
+
+Faceting in Solr offers valuable insights into the composition and distribution of data within search results, empowering users to explore and analyze their datasets effectively.
+
+
+## Updating data:
+
+- Solr does not duplicate data while uploading multiple times
+- Because the example solr schema specifies a unique key field called id in a file named either managed-schema or schema.xml
+- Whenever you POST commands to solr to add a document with the same value for the unique key as an existing document, it automatically replaces it for you
+
+  
+## Deleting data:
+
+```bash
+bin/post -c localDocs -d "<delete><id>SP2514N</id></delete>"
+```
+This will delete the document with id=SP2514N
+
+**To delete all documents**
+```bash
+  bin/post -c localDocs -d "<delete><query>*:*</query></delete>"
+```
+
 ## Delete a collection
 To delete a collection use this command
 ```bash
 bin/solr delete -c <Collection Name>
 ```
 
-## Alternative to create a collection
-You can directly create a collection using this command
-```bash
-bin/solr create -c <collection name> -s 2 -rf 2
-```
-- `-s 2` : Means we want to create 2 shards
-- `-rf 2`: Specifies replication, 2 in this case
-
-In this command we didn't mention anything about a configset. That's okay though because Solr knows how to handle this. It automatically uses a default configuration set called "_default" when you don't specify one explicitly. This "_default" configset is well-suited for most general use cases, hence its name. So even though we didn't mention it, Solr knows what to do behind the scenes.
-
-
-## Closing Solr instance
+## Stopping Solr instance
 
 This command stops all running Solr nodes on the local machine:
 ```bash
@@ -166,6 +228,9 @@ if you've stopped you need to restart it, follow these steps:
 2. Once the first node is up and running, proceed to start the second node and specify its connection to ZooKeeper:
     ```bash
     ./bin/solr start -c -p 7574 -s example/cloud/node2/solr -z localhost:9983
+
+
+# How to define Schema?
 
 ## Solr Schema
 In Solr, the schema serves as a crucial blueprint stored in a single XML file, outlining the structure and characteristics of fields and field types that Solr recognizes and manages. Essentially, it's a roadmap for Solr to understand and process data. The schema not only defines the names of fields and field types but also includes instructions on how to preprocess data before indexing it. For instance, if you want variations like "abc" and "ABC" to match when searching, you can specify in the schema to normalize such terms, perhaps by converting them to lowercase during indexing and querying. Additionally, the schema allows for the creation of copy fields, which aggregate data from other fields, and dynamic fields, which are generated based on wildcard patterns.
@@ -245,6 +310,17 @@ Suppose you have an e-commerce website with product documents containing "title"
 
 Now, when a document is indexed, the content of both the "title" and "description" fields will be automatically copied to the "content" field. This allows users to search for products using keywords from either the title or description, simplifying the search process.
 
+## Alternative to create a collection
+You can directly create a collection using this command
+```bash
+bin/solr create -c <collection name> -s 2 -rf 2
+```
+- `-s 2` : Means we want to create 2 shards
+- `-rf 2`: Specifies replication, 2 in this case
+
+In this command we didn't mention anything about a configset. That's okay though because Solr knows how to handle this. It automatically uses a default configuration set called "_default" when you don't specify one explicitly. This "_default" configset is well-suited for most general use cases, hence its name. So even though we didn't mention it, Solr knows what to do behind the scenes.
+
+
 ### Creating a "Catchall" Copy Field
 Previously, when we queried our indexed documents, we didn't have to specify a specific field to search because our configuration was set up to copy all fields into a text field, which served as the default search field when none was specified.
 
@@ -269,74 +345,3 @@ However, in our current configuration, this rule isn't in place. Consequently, w
 }
 ```
 What this action does is duplicate the content of all fields and stores it in the `_text_` field.
-
-## Faceting 
-
-Faceting is a powerful feature in Solr that allows search results to be organized into subsets or categories, with counts provided for each subset. Solr supports several types of faceting, including field facets, range facets, and pivot facets.
-
-### Field Facets
-
-Field facets provide counts for each unique value of a specified field in the result set. By enabling faceting and specifying the field to facet on, users can retrieve facet counts from all documents in the index. To enable field facets, the following parameters are required:
-- `&rows=0` (We set rows=0 to retrieve facet counts without fetching the actual documents, optimizing performance by avoiding unnecessary document retrieval)
-- `&facet=true`
-- `&facet.field={Target Field Name}`
-
-**Example**
-- `&facet.field=order_type`
-  
-This query will result the count of each type of order.
-
-### Range Facets
-
-Range facets are used for numeric or date fields, allowing users to partition facet counts into ranges rather than discrete values. To enable range facets, users should include parameters such as:
-- `&rows=0`
-- `&facet=true`
-- `&facet.range={Numeric or Date Field}`
-- `&facet.range.start={Start Value}`
-- `&facet.range.end={End Value}`
-- `&facet.range.gap={Gap between Ranges}`
-  
-**Example**
-- `&facet.range=order_date`
-- `&facet.range.start=2000-01-01`
-- `&facet.range.end={2024-02-22 || NOW (means till now)}`
-- `&facet.range.gap=%2B1YEAR`
-
-This query will result in range facet counts for the "order_date" field, starting from January 1, 2000, ending at the current date, and grouped by year. That means the query will count the total number of orders for each year
-
-
-### Pivot Facets
-
-Pivot facets, also known as decision trees, enable nesting two or more fields to explore various combinations. With pivot faceting, users can analyze how different fields intersect within the result set. To enable pivot facets, you should include parameters such as:
-- `&rows=0`
-- `&facet=true`
-- `&facet.pivot={Field1,Field2,...}`
-- `&facet.pivot.mincount={Minimum Count}`
-- `&facet.pivot.limit={Maximum Number of Pivot Facets}`
-  
-**Example**
-- `&facet.pivot=userId,productId`
-- `&facet.pivot.mincount=2`
-- `&facet.pivot.limit=10`
-  
-It will result in combinations of users and products where each combination has occurred at least twice, limited to the top 10 combinations. This query will give information about the number of times each user has purchased each product.
-
-Faceting in Solr offers valuable insights into the composition and distribution of data within search results, empowering users to explore and analyze their datasets effectively.
-
-## Updating data:
-
-- Solr does not duplicate data while uploading multiple times
-- Because the example solr schema specifies a unique key field called id in a file named either managed-schema or schema.xml
-- Whenever you POST commands to solr to add a document with the same value for the unique key as an existing document, it automatically replaces it for you
-  
-## Deleting data:
-
-```bash
-bin/post -c localDocs -d "<delete><id>SP2514N</id></delete>"
-```
-This will delete the document with id=SP2514N
-
-**To delete all documents**
-```bash
-  bin/post -c localDocs -d "<delete><query>*:*</query></delete>"
-```
