@@ -1,0 +1,81 @@
+[
+  {
+    "id": "1",
+    "title": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "publication_date": "1925-04-10",
+    "genre": "Classic",
+    "rating": 4.5,
+    "reviews": [
+      {"user": "user1", "comment": "An American classic."},
+      {"user": "user2", "comment": "Beautifully written."},
+      {"user": "user3", "comment": "Captivating storyline."}
+    ]
+  },
+  {
+    "id": "2",
+    "title": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "publication_date": "1960-07-11",
+    "genre": "Fiction",
+    "rating": 4.8,
+    "reviews": [
+      {"user": "user4", "comment": "Powerful and thought-provoking."},
+      {"user": "user5", "comment": "A must-read for all ages."},
+      {"user": "user6", "comment": "Atticus Finch is a memorable character."}
+    ]
+  },
+  {
+    "id": "3",
+    "title": "1984",
+    "author": "George Orwell",
+    "publication_date": "1949-06-08",
+    "genre": "Dystopian",
+    "rating": 4.7,
+    "reviews": [
+      {"user": "user7", "comment": "A chilling vision of the future."},
+      {"user": "user8", "comment": "Thought-provoking and relevant."},
+      {"user": "user9", "comment": "Classic dystopian literature."}
+    ]
+  },
+  {
+    "id": "4",
+    "title": "The Catcher in the Rye",
+    "author": "J.D. Salinger",
+    "publication_date": "1951-07-16",
+    "genre": "Coming-of-age",
+    "rating": 4.4,
+    "reviews": [
+      {"user": "user10", "comment": "Holden Caulfield is an iconic character."},
+      {"user": "user11", "comment": "Impactful exploration of adolescence."},
+      {"user": "user12", "comment": "A classic for teenage readers."}
+    ]
+  },
+  {
+    "id": "5",
+    "title": "Pride and Prejudice",
+    "author": "Jane Austen",
+    "publication_date": "1813-01-28",
+    "genre": "Romance",
+    "rating": 4.6,
+    "reviews": [
+      {"user": "user13", "comment": "Timeless love story."},
+      {"user": "user14", "comment": "Witty and engaging writing."},
+      {"user": "user15", "comment": "Jane Austen's masterpiece."}
+    ]
+  },
+  {
+    "id": "6",
+    "title": "The Hobbit",
+    "author": "J.R.R. Tolkien",
+    "publication_date": "1937-09-21",
+    "genre": "Fantasy",
+    "rating": 4.9,
+    "reviews": [
+      {"user": "user16", "comment": "A delightful journey."},
+      {"user": "user17", "comment": "Tolkien's world-building is unparalleled."},
+      {"user": "user18", "comment": "Captivating from start to finish."}
+    ]
+  }
+]
+
