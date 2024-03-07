@@ -29,6 +29,15 @@ Includes a link to online Javadocs for Solr.
 ## `example/`
 
 Includes various examples demonstrating Solr capabilities. Solr comes with various example documents and pre-configured setups that you can use as starting points when beginning to work with it.
+Inside this folder, solr provides several example documents and configurations to assist users in getting started quickly. These examples cover various scenarios and data formats:
+
+- **exampledocs**: Contains simple CSV, XML, and JSON files for basic Solr interaction, particularly useful with the bin/post tool.
+
+- **example-DIH**: Offers example configurations for the DataImport Handler (DIH), enabling the import of structured content from databases, email servers, or Atom feeds.
+
+- **files**: Provides a basic search UI for locally stored documents like Word or PDF files.
+
+- **films**: Includes a comprehensive dataset about movies in CSV, XML, and JSON formats, facilitating experimentation with Solr's capabilities.
 
 ## `licenses/`
 
@@ -48,14 +57,3 @@ The /server directory is organized as follows:
 - **solr**: Default solr.solr.home directory where Solr creates core directories. Must contain solr.xml. The core directory in Apache Solr contains metadata and configuration files related to the indexed documents. 
 - **solr/configsets**: Contains different configuration options for running Solr, including default and sample configurations.
 
-## `examples/`
-
-Solr provides several example documents and configurations to assist users in getting started quickly. These examples cover various scenarios and data formats:
-
-- **exampledocs**: Contains simple CSV, XML, and JSON files for basic Solr interaction, particularly useful with the bin/post tool.
-
-- **example-DIH**: Offers example configurations for the DataImport Handler (DIH), enabling the import of structured content from databases, email servers, or Atom feeds.
-
-- **files**: Provides a basic search UI for locally stored documents like Word or PDF files.
-
-- **films**: Includes a comprehensive dataset about movies in CSV, XML, and JSON formats, facilitating experimentation with Solr's capabilities.
