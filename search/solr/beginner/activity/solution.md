@@ -155,3 +155,30 @@ Response:
 
 ![image](https://github.com/shannee-07/Apache-Solr-doc/assets/121802518/d2acc0c7-b1a4-4a00-ad44-4c55fe70e054)
 
+
+## 4. Sorting
+
+### a. Sorting orders based on order_date
+
+**API**
+- **Method:** GET
+- **Endpoint:**
+  - For ascending order: `http://localhost:8983/solr/orders/select?indent=true&q=*:*&sort=order_date%20asc`
+  - For descending order: `http://localhost:8983/solr/orders/select?indent=true&q=*:*&sort=order_date%20desc`
+
+### b. Sorting orders based on customer's name
+
+Using copy field customer_name_str
+
+**API**
+- **Method:** GET
+- **Endpoint:**
+  - For ascending order: `http://localhost:8983/solr/orders/select?indent=true&q=*:*&sort=customer_name_str%20asc`
+  - For descending order: `http://localhost:8983/solr/orders/select?indent=true&q=*:*&sort=customer_name_str%20desc`
+ 
+### c. Sorting orders based on price
+
+**API**
+- **Method:** GET
+- **Endpoint:**
+  - For ascending order: `http://localhost:8983/solr/orders/select?indent=true&q=*:*&sort=price%20asc`
