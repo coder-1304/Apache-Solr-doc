@@ -275,3 +275,19 @@ Response:
 Response:
 
 ![image](https://github.com/shannee-07/Apache-Solr-doc/assets/121802518/d6f00f88-ebc3-407f-a598-92040a56fe92)
+
+## Deleting Documents
+
+Using Solr's `/update` endpoint for deleting documents with certain list of IDs
+**API**
+- **Method:** POST
+- **Endpoint:** `http://localhost:8983/solr/orders/update`
+- **Content-Type:** `application/json`
+- **Request body:**
+```json
+{
+    "delete": ["429b5071-f41d-482a-9823-4303219bb158","1dd6c622-fa80-4a58-b047-4da4676390c5"]
+}
+```
+
+This request will delete documents with IDs `429b5071-f41d-482a-9823-4303219bb158` and `1dd6c622-fa80-4a58-b047-4da4676390c5`
