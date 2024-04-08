@@ -15,12 +15,69 @@ Using Solr's `/update` endpoint for indexing data and adding orders data in the 
 ```json
 [
   {
-    "id": "1",
-    "title": "Doc 1"
+    "order_id": "1",
+    "product_name": "Laptop",
+    "customer_name": "John Doe",
+    "order_date": "2022-03-01",
+    "category": "Electronics",
+    "price": 1200.00,
+    "reviews": [
+      {"customer": "customer1", "comment": "Fast delivery, great product."},
+      {"customer": "customer2", "comment": "Excellent performance."},
+      {"customer": "customer3", "comment": "Satisfied with the purchase."}
+    ]
   },
   {
-    "id": "2",
-    "title": "Doc 2"
+    "order_id": "2",
+    "product_name": "Smartphone",
+    "customer_name": "Alice Smith",
+    "order_date": "2022-03-02",
+    "category": "Electronics",
+    "price": 800.00,
+    "reviews": [
+      {"customer": "customer4", "comment": "Good value for money."},
+      {"customer": "customer5", "comment": "User-friendly interface."},
+      {"customer": "customer6", "comment": "Happy with the purchase."}
+    ]
+  },
+  {
+    "order_id": "3",
+    "product_name": "Running Shoes",
+    "customer_name": "Bob Johnson",
+    "order_date": "2022-03-03",
+    "category": "Fashion",
+    "price": 80.00,
+    "reviews": [
+      {"customer": "customer7", "comment": "Comfortable and stylish."},
+      {"customer": "customer8", "comment": "Perfect fit."},
+      {"customer": "customer9", "comment": "Great for running."}
+    ]
+  },
+  {
+    "order_id": "4",
+    "product_name": "Coffee Maker",
+    "customer_name": "Emily Davis",
+    "order_date": "2022-03-04",
+    "category": "Home & Kitchen",
+    "price": 50.00,
+    "reviews": [
+      {"customer": "customer10", "comment": "Easy to use and clean."},
+      {"customer": "customer11", "comment": "Makes delicious coffee."},
+      {"customer": "customer12", "comment": "Happy with the purchase."}
+    ]
+  },
+  {
+    "order_id": "5",
+    "product_name": "Books Set",
+    "customer_name": "Charlie Brown",
+    "order_date": "2022-03-05",
+    "category": "Books",
+    "price": 120.00,
+    "reviews": [
+      {"customer": "customer13", "comment": "Exciting reads, fast delivery."},
+      {"customer": "customer14", "comment": "Great collection."},
+      {"customer": "customer15", "comment": "Satisfied with the purchase."}
+    ]
   }
 ]
 ```
