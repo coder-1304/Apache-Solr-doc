@@ -239,3 +239,39 @@ Using copy field customer_name_str
 - **Method:** GET
 - **Endpoint:**
   - For ascending order: `http://localhost:8983/solr/orders/select?indent=true&q=*:*&sort=price%20asc`
+
+## 5. Filtering
+
+### a. Filtering orders where order date starting fro 4 March 2022 till now
+
+**API**
+
+- **Method:** GET
+- **Endpoint:** `http://localhost:8983/solr/orders/select?indent=true&q=order_date:[2022-03-04T00:00:00Z TO NOW]`
+
+
+### b. Filtering orders where customer's name starts with `A`
+
+**API**
+- **Method:** GET
+- **Endpoint:** `http://localhost:8983/solr/orders/select?indent=true&q=customer_name:A*`
+
+Response:
+
+![image](https://github.com/shannee-07/Apache-Solr-doc/assets/121802518/920ea908-3ed8-4f5b-8dcb-89dbe9366beb)
+
+### c. Fetching non-electronic category orders with price greater than 100
+
+**API**
+- **Method:** GET
+- **Endpoint:** `http://localhost:8983/solr/orders/select?indent=true&q=price:[100 TO *]%20NOT%20category:electronics`
+
+### d. Retrieving orders for the electronics category with product reviews containing the phrase "fast delivery"
+
+**API**
+- **Method:** GET
+- **Endpoint:** `http://localhost:8983/solr/orders/select?indent=true&q=reviews:"fast delivery"%20AND%20category:electronics`
+
+Response:
+
+![image](https://github.com/shannee-07/Apache-Solr-doc/assets/121802518/d6f00f88-ebc3-407f-a598-92040a56fe92)
