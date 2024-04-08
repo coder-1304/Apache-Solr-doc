@@ -2,31 +2,31 @@
 
 When navigating Solr's terminology, it's common to encounter confusion between certain terms. Let's discuss each one to ensure clarity.
 
-### Cluster:
+### 1. Cluster:
 
 A cluster refers to a group of interconnected Solr nodes working together. It contains all the nodes in the environment, collaborating to provide a scalable and fault-tolerant search solution. Nodes within a cluster communicate with each other to distribute data, handle queries, and maintain system stability.
 
-### Solr Node:
+### 2. Solr Node:
 
 A Solr node is a physical server or instance where Solr is installed and running. Each Solr node acts as a standalone unit within the cluster, capable of handling indexing, querying, and other operations independently. Nodes are the building blocks of a Solr cluster, and they collaborate to provide distributed search and indexing capabilities.
 
-### Cores:
+### 3. Cores:
 
 A core represents a complete physical index on a Solr node. It is used to separate documents that have different schemas or belong to different collections. Every core is independent of each other, with its own configuration, schema, and set of indexed documents.
 
-### Collection:
+### 4. Collection:
 
 A collection is a complete logical index in a SolrCloud cluster. It consists of multiple shards and replicas distributed across multiple Solr nodes. Collections allow you to organize and manage related data as a single entity within SolrCloud. A Solr node can host multiple collections, each with its own set of cores and configuration.
 
-### Config Set:
+### 5. Config Set:
 
 A configuration set in Solr defines the schema structure, indexing settings, and other configurations used by cores within a collection. It includes details such as field definitions, analysis chains, update request handlers, and more. Config sets provide a way to manage and share common configurations across multiple cores or collections within a SolrCloud cluster.
 
-### Shard:
+### 6. Shard:
 
 In a distributed environment, a shard refers to a partition of data distributed between multiple Solr instances or nodes. Sharding helps in scaling out Solr by distributing the index and query load across multiple nodes. Each shard contains a subset of the total data, and together they form a distributed index across the cluster.
 
-### Replica:
+### 7. Replica:
 
 A replica is a copy of a shard that runs on a separate Solr node within the cluster. Replicas are used to provide fault tolerance and high availability by ensuring that data is replicated across multiple nodes. If a node hosting a shard replica goes down, queries can still be served by other replicas of the same shard.
 
