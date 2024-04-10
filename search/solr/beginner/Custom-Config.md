@@ -49,3 +49,16 @@ Parameters breakdown:
 - `collection.configName=instanceDetails`: Specifies the name of the configset to be used for the collection.
 
 By following the steps outlined in this guide, you can easily create a Solr collection using a custom configset.
+
+### Task 
+Add the following fields to instanceDetails collection.
+
+- instanceUrl: String type, Single value, Indexed, Required, Stored
+- status: String type, Single value, Indexed, Not required, Stored
+- builtOn: Date type, Single value, Indexed, Not required, Stored
+- version: String type, Single value, Indexed, Not required, Stored
+- branch: String type, Single value, Indexed, Not required, Stored
+- revision: String type, Single value, Indexed, Not required, Stored
+- plugins* (dynamic field): String type, Single value, Indexed, Not required, Stored
+- systemInfo* (dynamicField): String type, Single value, Indexed, Not required, Stored
+- searchServer* (dynamicField): String type, Single value, Indexed, Not required, Stored
