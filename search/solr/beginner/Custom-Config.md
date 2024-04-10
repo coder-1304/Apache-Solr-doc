@@ -68,6 +68,7 @@ Add the following fields to instanceDetails collection.
 Using this Schema API to create new fields
 - **Method:** POST
 - **Endpoint:** `http://localhost:8983/solr/instanceDetails/schema`
+> instanceDetails is the name of the collection
 - **Content-Type:** `application/json`
 - **Request body:**
 ```json
@@ -134,4 +135,5 @@ Using this Schema API to create new fields
     ]
 }
 ```
+
 
