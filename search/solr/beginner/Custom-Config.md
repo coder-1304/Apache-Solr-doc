@@ -62,3 +62,76 @@ Add the following fields to instanceDetails collection.
 - plugins* (dynamic field): String type, Single value, Indexed, Not required, Stored
 - systemInfo* (dynamicField): String type, Single value, Indexed, Not required, Stored
 - searchServer* (dynamicField): String type, Single value, Indexed, Not required, Stored
+
+#### Solution:
+
+Using this Schema API to create new fields
+- **Method:** POST
+- **Endpoint:** `http://localhost:8983/solr/instanceDetails/schema`
+- **Content-Type:** `application/json`
+- **Request body:**
+```json
+{
+    "add-field": [
+        {
+            "name": "instanceUrl",
+            "type": "string",
+            "indexed": true,
+            "required": true,
+            "stored": true
+        },
+        {
+            "name": "status",
+            "type": "string",
+            "indexed": true,
+            "stored": true
+        },
+        {
+            "name": "builtOn",
+            "type": "pdate",
+            "indexed": true,
+            "stored": true
+        },
+        {
+            "name": "version",
+            "type": "string",
+            "indexed": true,
+            "stored": true
+        },
+        {
+            "name": "branch",
+            "type": "string",
+            "indexed": true,
+            "stored": true
+        },
+        {
+            "name": "revision",
+            "type": "string",
+            "indexed": true,
+            "stored": true
+        }
+        
+    ],
+    "add-dynamic-field" :[
+        {
+            "name": "plugins*",
+            "type": "string",
+            "indexed": true,
+            "stored": true
+        },
+        {
+            "name": "systemInfo*",
+            "type": "string",
+            "indexed": true,
+            "stored": true
+        },
+        {
+            "name": "searchServer*",
+            "type": "string",
+            "indexed": true,
+            "stored": true
+        }
+    ]
+}
+```
+
