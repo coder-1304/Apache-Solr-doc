@@ -24,7 +24,7 @@ If we create a collection with a replication factor of 1 and later try to update
 Adding replicas can be achieved using the Solr Collection API. For example:
 
 ```
-http://localhost:8983/solr/admin/collections?action=ADDREPLICA&collection=shipment&shard=shard1
+http://localhost:8983/solr/admin/collections?action=ADDREPLICA&collection=<Collection Name>&shard=<Shard Name>
 ```
 
 
