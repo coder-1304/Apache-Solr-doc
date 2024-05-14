@@ -18,6 +18,8 @@ When you choose the "Level" option, you'll encounter the following menu:
 
 ![image](https://github.com/shannee-07/Apache-Solr-doc/assets/121802518/0770a6f2-402f-4f85-a505-b559168876f0)
 
+The configurations provided represent the hierarchy of logging levels and their associated components in the Apache Solr system. Each component corresponds to a specific part of the Solr codebase or functionality, and the associated log level indicates the severity of messages logged for that component.
+
 Directories are displayed along with their current logging levels. The Log Level Menu appears over these directories. To adjust the logging level for a specific directory, simply select it and click on the corresponding log level button.
 
 Here are the available log-level settings:
