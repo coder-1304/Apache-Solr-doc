@@ -1,6 +1,37 @@
-# Logging
+# Configuring Logging
 
-The Logging page in the Solr admin UI displays recent messages logged by the Solr node.
+Solr logs provide valuable insights into the system's activities and are crucial for monitoring its performance. Modifying the default logging configuration can be done in several ways.
+
+## Customizing Logging Configuration
+
+In addition to the methods described below, you can also configure which request parameters, such as those sent with queries, are logged using an additional parameter called `logParamsList`. 
+
+## Adjusting Temporary Logging Settings
+
+You can modify the logging output in Solr temporarily through the Admin Web interface. Simply navigate to the LOGGING section. Keep in mind that changes made here are only applicable during the current session and are not saved for future sessions. 
+
+![image](https://github.com/shannee-07/Apache-Solr-doc/assets/121802518/c78fc118-62f1-4bc4-b18c-c98cf792848f)
+
+In the Admin Web interface of Solr, you can easily adjust the logging level for various log categories. Fortunately, if a category's logging level is not explicitly set, it inherits the logging level from its parent category. This means that adjusting the logging level of a parent category can impact multiple sub-categories at once.
+
+When you choose the "Level" option, you'll encounter the following menu:
+
+![image](https://github.com/shannee-07/Apache-Solr-doc/assets/121802518/0770a6f2-402f-4f85-a505-b559168876f0)
+
+Directories are displayed along with their current logging levels. The Log Level Menu appears over these directories. To adjust the logging level for a specific directory, simply select it and click on the corresponding log level button.
+
+Here are the available log-level settings:
+
+| Level  | Result                                 |
+|--------|----------------------------------------|
+| FINEST | Reports everything.                    |
+| FINE   | Reports everything but the least important messages. |
+| CONFIG | Reports configuration errors.          |
+| INFO   | Reports everything but normal status. |
+| WARN   | Reports all warnings.                  |
+| SEVERE | Reports only the most severe warnings. |
+| OFF    | Turns off logging.                     |
+| UNSET  | Removes the previous log setting.     |
 
 ## Overview of Log4j in SolrCloud
 
@@ -8,7 +39,7 @@ In Apache SolrCloud, Log4j is the commonly used logging framework. Here's a brie
 
 ### Configuration
 
-Log4j in SolrCloud is configured via properties files (e.g., log4j.properties) or XML configuration files (log4j.xml). These files specify where log messages should be output, their format, and the conditions under which they should be logged.
+Log4j in SolrCloud is configured via an XML configuration file (log4j2.xml stored inside SOLR_HOME/server/resources). This file specifies where log messages should be output, their format, and the conditions under which they should be logged.
 
 ### Loggers
 
@@ -22,16 +53,7 @@ Appenders define the _destination of log messages_. They can send logs to consol
 
 Log levels determine the severity of a log message. Log4j defines several standard levels like DEBUG, INFO, WARN, ERROR, and FATAL. Each logger can be set to log messages at a specific level or above.
 
-| Level  | Result                                 |
-|--------|----------------------------------------|
-| FINEST | Reports everything.                    |
-| FINE   | Reports everything but the least important messages. |
-| CONFIG | Reports configuration errors.          |
-| INFO   | Reports everything but normal status. |
-| WARN   | Reports all warnings.                  |
-| SEVERE | Reports only the most severe warnings. |
-| OFF    | Turns off logging.                     |
-| UNSET  | Removes the previous log setting.     |
+
 
 ### Log Statements
 
@@ -49,7 +71,9 @@ By configuring Log4j appropriately, SolrCloud administrators can control log ver
 
 ## Log Rotation Size Threshold
 
-In `log4j2.xml`, if the default log rotation size threshold of 32MB is too small for production servers, it should be increased to a larger value (e.g., 100MB or more).
+Rotation size refers to the maximum size a log file can reach before it is rotated or archived. When a log file reaches this size threshold, it is typically renamed, and a new log file is created to continue logging events.
+
+In `log4j2.xml`, if the default log rotation size threshold of 32MB is too small for production servers, it should be increased to a larger value (e.g., 100MB or more). 
 
 ```xml
 <SizeBasedTriggeringPolicy size="100 MB"/>
