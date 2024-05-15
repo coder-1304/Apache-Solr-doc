@@ -4,10 +4,13 @@
 
 Configure appropriate log levels for different components of SolrCloud. For instance, you might set a lower log level (e.g., DEBUG or INFO) during development and testing, but a higher log level (e.g., WARN or ERROR) in production to minimize log noise.
 
-
 ## Centralized Logging
 
 Consider using a centralized logging solution like Elasticsearch, Splunk, or ELK (Elasticsearch, Logstash, and Kibana) to aggregate logs from all SolrCloud nodes. This makes it easier to search, analyze, and visualize log data.
+
+## Audit Logging
+
+Enable audit logging to track user actions and system activities for security and compliance purposes. This can help in detecting unauthorized access or suspicious behavior.
 
 ## Custom Logging
 
@@ -28,10 +31,6 @@ Configure alerts based on predefined thresholds for critical metrics such as hea
 ## Cluster Health Monitoring
 
 Monitor the health of the SolrCloud cluster using Solr's built-in cluster status API (`/solr/admin/collections?action=CLUSTERSTATUS`). Check the status of individual nodes, shard distribution, and replica status regularly.
-
-## Audit Logging
-
-Enable audit logging to track user actions and system activities for security and compliance purposes. This can help in detecting unauthorized access or suspicious behavior.
 
 ## Regular Log Analysis
 
