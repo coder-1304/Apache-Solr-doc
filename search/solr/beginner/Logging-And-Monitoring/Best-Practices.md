@@ -10,7 +10,7 @@ Consider using a centralized logging solution like Elasticsearch, Splunk, or ELK
 
 ## Audit Logging
 
-Enable audit logging to track user actions and system activities for security and compliance purposes. This can help in detecting unauthorized access or suspicious behavior.
+Enable audit logging to track user actions and system activities for security and compliance purposes. This can help in detecting unauthorized access or suspicious behavior. Solr has the ability to log an audit trail of all HTTP requests entering the system.
 
 ## Custom Logging
 
