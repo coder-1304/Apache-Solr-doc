@@ -37,7 +37,7 @@ ZooKeeper is a centralized service for maintaining configuration information, pr
 
 ### 9. Metrics
 
-Metrics are measurements or data points that provide insights into the performance, behavior, or state of a system or application. In the context of software development and operations, metrics are crucial for monitoring, troubleshooting, and optimizing the performance and reliability of applications and infrastructure.
+Metrics are measurements or data points that provide insights into the performance, behavior, or state of a system or application. Metrics are crucial for monitoring, troubleshooting, and optimizing the performance and reliability of applications and infrastructure.
 
 Metrics are typically collected, aggregated, and analyzed over time to identify trends, anomalies, and areas for improvement. They provide valuable insights for making informed decisions about system performance, reliability, and scalability. Additionally, metrics are often used to set and monitor Service Level Objectives (SLOs) and Service Level Indicators (SLIs) to ensure that systems meet desired performance and reliability targets.
 
